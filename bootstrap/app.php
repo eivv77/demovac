@@ -60,7 +60,6 @@ $app->singleton(
 */
 
 $app->configure('app');
-$app->configure('auth');
 
 /*
 |--------------------------------------------------------------------------
@@ -73,9 +72,9 @@ $app->configure('auth');
 |
 */
 
-// $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
-// ]);
+ $app->middleware([
+     App\Http\Middleware\ExampleMiddleware::class,
+ ]);
 
  $app->routeMiddleware([
      'auth' => App\Http\Middleware\Authenticate::class,
@@ -95,10 +94,27 @@ $app->configure('auth');
  $app->register(App\Providers\AppServiceProvider::class);
  $app->register(App\Providers\AuthServiceProvider::class);
  $app->register(App\Providers\EventServiceProvider::class);
- $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+// $app->register(Anik\Form\FormRequestServiceProvider::class);
+ $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+// $app->register(Fruitcake\Cors\CorsServiceProvider::class);
 
- $app->register(\Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
+if (env('APP_ENV') != 'production') {
+     $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+ }
+
+/*
+|--------------------------------------------------------------------------
+| Register Configs
+|--------------------------------------------------------------------------
+|
+| Here we will register all of the application's config files
+|
+*/
+
+collect(scandir(__DIR__ . '/../config'))->each(function ($item) use ($app) {
+    $app->configure(basename($item, '.php'));
+});
 
 
 /*
@@ -112,14 +128,12 @@ $app->configure('auth');
 |
 */
 
-collect(scandir(__DIR__ . '/../config'))->each(function ($item) use ($app) {
-    $app->configure(basename($item, '.php'));
-});
-
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
-    require __DIR__ . '/../routes/api-v1.php';
+    require __DIR__.'/../routes/api-v1.php';
 });
+
+app('translator')->setLocale('az');
 
 return $app;

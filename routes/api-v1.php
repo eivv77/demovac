@@ -28,11 +28,20 @@ $router->group(['prefix' => 'api/v1'], function ($router) {
             $user->get('me', 'UserController@me');
             $user->post('logout', 'UserController@logout');
         });
-
-        $router->get('certificates', 'CertificatesController@index');
-        $router->post('certificates', 'CertificatesController@store');
-
-
     });
 
+    $router->group(['prefix' => 'admin'], function ($router) {
+        $router->get('certificates', 'CertificatesController@index');
+    });
+    $router->group(['prefix' => 'client'], function ($router) {
+        $router->post('certificates', 'CertificatesController@store');
+    });
+
+
+    $router->group(['prefix' => 'admin'], function ($router) {
+        $router->get('/contact/us', 'ContactUsController@index');
+    });
+    $router->group(['prefix' => 'client'], function ($router) {
+        $router->post('/contact/us', 'ContactUsController@store');
+    });
 });

@@ -16,6 +16,7 @@ class CreateVacanciesTable extends Migration
         Schema::create('vacancies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->constrained("categories");
+            $table->foreignId('level_id')->constrained("levels");
             $table->text('job_description');
             $table->text('skills_required');
             $table->float('offered_salary');
@@ -23,7 +24,6 @@ class CreateVacanciesTable extends Migration
             $table->smallInteger('gender');
             $table->string('industry');
             $table->string('qualification');
-            $table->string('level');
             $table->smallInteger("status")->default(config('options.status.active'));
             $table->timestamps();
         });

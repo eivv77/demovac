@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVacancyRepliesTable extends Migration
+class CreateLevelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateVacancyRepliesTable extends Migration
      */
     public function up()
     {
-        Schema::create('vacancy_replies', function (Blueprint $table) {
+        Schema::create('levels', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('vacancy_id')->constrained("vacancies");
-//            $table->foreign('vacancy_id')
-//                ->references('id')
-//                ->on('')
-//                ->onDelete('cascade');
+            $table->string("name");
+            $table->smallInteger("status")->default(config("options.status.active"));
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateVacancyRepliesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vacancy_replies');
+        Schema::dropIfExists('levels');
     }
 }

@@ -7,20 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property integer $id
  * @property string $name
- * @property string $email
- * @property string $message
+ * @property string $path
+ * @property int $position
+ * @property boolean $is_active
  * @property string $created_at
  * @property string $updated_at
  */
-class ContactUs extends Model
+class Certificate extends Model
 {
-    /**
-     * The table associated with the model.
-     * 
-     * @var string
-     */
-    protected $table = 'contact_us';
-
     /**
      * The "type" of the auto-incrementing ID.
      * 
@@ -31,6 +25,6 @@ class ContactUs extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'email', 'message', 'created_at', 'updated_at'];
+    protected $fillable = ['name', 'path', 'position', 'is_active', 'created_at', 'updated_at'];
 
 }

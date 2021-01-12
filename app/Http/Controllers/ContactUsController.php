@@ -38,8 +38,6 @@ class ContactUsController extends Controller
     public function store(ContactUsCreateRequest $request): JsonResponse
     {
         //$validated = $request->validate();
-
-
         //dd($request->all());
         //return $this->success($request->get('name'));
         //dd($request->all());
@@ -54,4 +52,6 @@ class ContactUsController extends Controller
 
         return $this->success(trans('messages.saved'), [], 201);
     }
+
 }
+

@@ -29,4 +29,9 @@ class ContactUsCreateRequest extends FormRequest
             'message' => 'required|min:3|max:255'
         ];
     }
+
+    protected function recaptcha()
+    {
+
+    }
 }

@@ -17,13 +17,13 @@ class CreateVacanciesTable extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained("categories");
             $table->foreignId('level_id')->constrained("levels");
+            $table->foreignId('industry_id')->constrained("industries");
+            $table->foreignId('qualification_id')->constrained("qualifications");
             $table->text('job_description');
             $table->text('skills_required');
             $table->float('offered_salary');
             $table->integer('experience');
             $table->smallInteger('gender');
-            $table->string('industry');
-            $table->string('qualification');
             $table->smallInteger("status")->default(config('options.status.active'));
             $table->timestamps();
         });

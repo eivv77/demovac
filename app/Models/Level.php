@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $created_at
  * @property string $updated_at
  * @property Vacancy[] $vacancies
+ * @method static create(array $array)
  */
 class Level extends Model
 {

@@ -10,12 +10,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $status
  * @property string $created_at
  * @property string $updated_at
+ * @method static create(array $array)
  */
 class Industry extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';

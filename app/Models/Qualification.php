@@ -9,12 +9,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $created_at
  * @property string $updated_at
  * @property Vacancy[] $vacancies
+ * @method static create(array $array)
  */
 class Qualification extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -22,7 +23,7 @@ class Qualification extends Model
     /**
      * @var array
      */
-    protected $fillable = ['created_at', 'updated_at'];
+    protected $fillable = ['name', 'status', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

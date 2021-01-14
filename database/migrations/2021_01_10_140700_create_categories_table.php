@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +14,9 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('parent_id')->constrained("categories");
+            $table->foreignId('parent_id')
+                ->nullable()
+                ->constrained("categories");
             $table->string('name');
             $table->smallInteger("status")->default(config("options.status.active"));
             $table->timestamps();

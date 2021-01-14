@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $updated_at
  * @property Category $category
  * @property Level $level
+ * @method static create(array $array)
  */
 class Vacancy extends Model
 {
@@ -33,8 +34,8 @@ class Vacancy extends Model
     /**
      * @var array
      */
-    protected $fillable = ['category_id', 'level_id', 'job_description', 'skills_required', 'offered_salary',
-        'experience', 'gender', 'industry', 'qualification', 'status', 'created_at', 'updated_at'];
+    protected $fillable = ['category_id', 'level_id', 'job_description', 'industry_id', 'qualification_id', 'skills_required', 'offered_salary',
+        'experience', 'gender',  'status', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

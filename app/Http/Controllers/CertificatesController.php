@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Certificates;
+use App\Models\Certificate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -15,9 +15,9 @@ class CertificatesController extends Controller
 
     /**
      * CertificatesController constructor.
-     * @param Certificates $certificate
+     * @param Certificate $certificate
      */
-    public function __construct(Certificates $certificate)
+    public function __construct(Certificate $certificate)
     {
         $this->certificate = $certificate;
     }
@@ -29,7 +29,7 @@ class CertificatesController extends Controller
      */
     public function index()
     {
-        $certificates = Certificates::all();
+        $certificates = Certificate::all();
         return response()->json([
             'certificates' => $certificates
         ],200 );

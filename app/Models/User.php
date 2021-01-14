@@ -15,6 +15,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 {
     use Authenticatable, Authorizable, HasFactory;
 
+    public function run()
+    {
+        User::factory()
+            ->count(1)
+            ->create();
+    }
+
     /**
      * The attributes that are mass assignable.
      *

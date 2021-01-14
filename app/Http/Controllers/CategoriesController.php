@@ -2,25 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Certificate;
+use App\Models\Category;
+use App\Traits\ApiResponder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-/**
- * @method setModel()
- */
-class CertificatesController extends Controller
+class CategoriesController extends Controller
 {
-
-    /**
-     * CertificatesController constructor.
-     * @param Certificate $certificate
-     */
-    public function __construct(Certificate $certificate)
-    {
-        $this->certificate = $certificate;
-    }
+    use ApiResponder;
 
     /**
      * Display a listing of the resource.
@@ -29,10 +17,10 @@ class CertificatesController extends Controller
      */
     public function index()
     {
-        $certificates = Certificate::all();
-        return response()->json([
-            'certificates' => $certificates
-        ],200 );
+        $categories = Category::all();
+
+        return $this->success('List', $categories);
+
     }
 
     /**
@@ -53,19 +41,13 @@ class CertificatesController extends Controller
      */
     public function store(Request $request)
     {
-        $file = $request->file('file_test');
-        $ext = $file->getClientOriginalExtension();
-        $name = ($ext);
-        $storagePath = 'certificates/files';
+        $category = Category::create([
+            'name' => $request->get('name'),
+            'status' => $request->get('status'),
+        ]);
 
-        $disk = Storage::disk('public');
-        $disk->put($storagePath, $file);
-
-        return response()->json(['success' => 'ok']);
-
+        return $this->success('list', $category);
     }
-
-
 
     /**
      * Display the specified resource.

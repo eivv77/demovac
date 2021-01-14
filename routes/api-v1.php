@@ -44,4 +44,69 @@ $router->group(['prefix' => 'api/v1'], function ($router) {
     $router->group(['prefix' => 'client'], function ($router) {
         $router->post('/contact/us', 'ContactUsController@store');
     });
+
+
+    $router->group(['prefix' => 'client'], function ($router){
+        $router->get('/vacancies', 'VacanciesController@index');
+    });
+
+    $router->group(['prefix' => 'admin'], function ($router){
+        $router->post('/vacancies', 'VacanciesController@store');
+    });
+
+
+    $router->group(['prefix' => 'admin'], function ($router){
+        $router->get('/categories', 'CategoriesController@index');
+    });
+    $router->group(['prefix' => 'admin'], function ($router){
+        $router->post('/categories', 'CategoriesController@store');
+    });
+
+
+    $router->group(['prefix' => 'admin'], function ($router){
+        $router->get('/levels', 'LevelController@index');
+    });
+    $router->group(['prefix' => 'admin'], function ($router){
+        $router->post('/levels', 'LevelController@store');
+    });
+
+
+    $router->group(['prefix' => 'admin'], function ($router){
+        $router->get('/industries', 'IndustriesController@index');
+    });
+    $router->group(['prefix' => 'admin'], function ($router){
+        $router->post('/industries', 'IndustriesController@store');
+    });
+
+
+    $router->group(['prefix' => 'admin'], function ($router){
+        $router->get('/qualifications', 'QualificationsController@index');
+    });
+    $router->group(['prefix' => 'admin'], function ($router){
+        $router->post('/qualifications', 'QualificationsController@store');
+    });
+
+
+    $router->group(['prefix' => 'admin'], function ($router){
+        $router->get('/vacancy/apply', 'VacancyApplyController@index');
+    });
+    $router->group(['prefix' => 'client'], function ($router){
+        $router->post('/vacancy/apply', 'VacancyApplyController@store');
+    });
+
+
+    $router->group(['prefix' => 'admin'], function ($router){
+        $router->get('/team', 'TeamMembersController@index');
+    });
+    $router->group(['prefix' => 'admin'], function ($router){
+        $router->post('/team', 'TeamMembersController@store');
+    });
+
+
+    $router->group(['prefix' => 'admin'], function ($router){
+        $router->get('/team/categories', 'TeamMembersCategoriesController@index');
+    });
+    $router->group(['prefix' => 'admin'], function ($router){
+        $router->post('/team/categories', 'TeamMembersCategoriesController@store');
+    });
 });

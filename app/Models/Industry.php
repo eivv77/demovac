@@ -7,23 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property integer $id
  * @property string $name
- * @property string $email
- * @property string $message
+ * @property integer $status
  * @property string $created_at
  * @property string $updated_at
+ * @method static create(array $array)
  */
-class ContactUs extends Model
+class Industry extends Model
 {
     /**
-     * The table associated with the model.
-     * 
-     * @var string
-     */
-    protected $table = 'contact_us';
-
-    /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -31,6 +24,6 @@ class ContactUs extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'email', 'message', 'created_at', 'updated_at'];
+    protected $fillable = ['name', 'status', 'created_at', 'updated_at'];
 
 }

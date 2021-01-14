@@ -2,25 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Certificate;
+use App\Models\VacancyApply;
+use App\Traits\ApiResponder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-/**
- * @method setModel()
- */
-class CertificatesController extends Controller
+class VacancyApplyController extends Controller
 {
-
-    /**
-     * CertificatesController constructor.
-     * @param Certificate $certificate
-     */
-    public function __construct(Certificate $certificate)
-    {
-        $this->certificate = $certificate;
-    }
+    use ApiResponder;
 
     /**
      * Display a listing of the resource.
@@ -29,10 +17,9 @@ class CertificatesController extends Controller
      */
     public function index()
     {
-        $certificates = Certificate::all();
-        return response()->json([
-            'certificates' => $certificates
-        ],200 );
+        $vacanciesApply = VacancyApply::all();
+
+        return $this->success('List', $vacanciesApply);
     }
 
     /**
@@ -53,19 +40,16 @@ class CertificatesController extends Controller
      */
     public function store(Request $request)
     {
-        $file = $request->file('file_test');
-        $ext = $file->getClientOriginalExtension();
-        $name = ($ext);
-        $storagePath = 'certificates/files';
+        $vacancyApply = VacancyApply::create([
+            'vacancy_id' => $request->get('vacancy_id'),
+            'email' => $request->get('email'),
+            'phone_number' => $request->get('phone_number'),
+            'message' => $request->get('message'),
 
-        $disk = Storage::disk('public');
-        $disk->put($storagePath, $file);
+        ]);
 
-        return response()->json(['success' => 'ok']);
-
+        return $this->success('list', $vacancyApply);
     }
-
-
 
     /**
      * Display the specified resource.

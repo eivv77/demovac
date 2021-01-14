@@ -93,4 +93,20 @@ $router->group(['prefix' => 'api/v1'], function ($router) {
     $router->group(['prefix' => 'client'], function ($router){
         $router->post('/vacancy/apply', 'VacancyApplyController@store');
     });
+
+
+    $router->group(['prefix' => 'admin'], function ($router){
+        $router->get('/team', 'TeamMembersController@index');
+    });
+    $router->group(['prefix' => 'admin'], function ($router){
+        $router->post('/team', 'TeamMembersController@store');
+    });
+
+
+    $router->group(['prefix' => 'admin'], function ($router){
+        $router->get('/team/categories', 'TeamMembersCategoriesController@index');
+    });
+    $router->group(['prefix' => 'admin'], function ($router){
+        $router->post('/team/categories', 'TeamMembersCategoriesController@store');
+    });
 });

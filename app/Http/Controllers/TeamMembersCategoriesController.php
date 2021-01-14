@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Vacancy;
+use App\Models\TeamMembersCategory;
 use App\Traits\ApiResponder;
 use Illuminate\Http\Request;
 
-class VacanciesController extends Controller
+class TeamMembersCategoriesController extends Controller
 {
     use ApiResponder;
 
@@ -18,10 +18,9 @@ class VacanciesController extends Controller
      */
     public function index()
     {
-        $vacancies = Vacancy::all();
+        $category = TeamMembersCategory::all();
 
-        return $this->success('List', $vacancies);
-
+        return $this->success('list', $category);
     }
 
     /**
@@ -31,7 +30,7 @@ class VacanciesController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -42,29 +41,12 @@ class VacanciesController extends Controller
      */
     public function store(Request $request)
     {
-//        $vacancy->fill([
-//            'job_description' => $request->get('job_description'),
-//            'skills_required' => $request->get('skills_required'),
-//            'offered_salary' => $request->get('offered_salary'),
-//            'experience' => $request->get('experience'),
-//            'gender' => $request->get('gender'),
-//        ])->save();
-            $vacancy = Vacancy::create([
-                'category_id' => $request->get('category_id'),
-                'level_id' => $request->get('level_id'),
-                'industry_id' => $request->get('industry_id'),
-                'qualification_id' => $request->get('qualification_id'),
-                'job_description' => $request->get('job_description'),
-                'skills_required' => $request->get('skills_required'),
-                'offered_salary' => $request->get('offered_salary'),
-                'experience' => $request->get('experience'),
-                'gender' => $request->get('gender'),
-             ]);
+        $category = TeamMembersCategory::create([
+            'status' => $request->get('status'),
+        ]);
 
-           return $this->success('list', $vacancy);
+        return $this->success('list', $category);
     }
-
-
 
     /**
      * Display the specified resource.
